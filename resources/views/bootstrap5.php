@@ -6,9 +6,14 @@
                 errorElement: 'div',
                 errorClass: 'invalid-feedback',
 
-                errorPlacement: function (error, element) {
-                    error.insertAfter(element);
-                },
+                    errorPlacement: function(error, element) {
+        if (element.parent().children('.select2').length){
+                error.insertAfter(element.parent().children('.select2'));
+            } else {
+                error.insertAfter(element);
+            } // else just place the validation message immediately after the input
+        },
+        
                 highlight: function (element) {
                     $(element).removeClass('is-valid').addClass('is-invalid'); // add the Bootstrap error class to the control group
                 },
